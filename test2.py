@@ -5,7 +5,7 @@ app=Flask(__name__)
 
 @app.route('/', methods=("POST", "GET"))
 def maFonction():
-    return render_template('accueil.html')
+    return render_template('test.html')
 
 @app.route('/scrapping', methods=("POST", "GET"))
 def scrapping():
