@@ -24,8 +24,7 @@ def add():
         cursor.execute("INSERT INTO Users(nom, email,telephone,password) VALUES (%s, %s, %s, %s)", (nom, email,telephone,password))
         connection.commit() 
         cursor.close()
-        connection.close()
-            
+        connection.close()        
     return render_template('formulaire.html')
 
 @app.route('/liste', methods=("POST", "GET"))
@@ -33,16 +32,7 @@ def liste():
     cursor = connection.cursor() # mettre try: 
     cursor.execute("SELECT * FROM Users")
     connection.commit() 
-    tab=[]
-    tableau=[]
-    for row in cursor:
-        tab.append(row["nom"])
-        tab.append(row["telephone"])
-        tab.append(row["email"])
-        tab.append(row["password"])
-        tableau.append(tab)
-        tab=[]
-
+    tableau=cursor
     cursor.close()
     connection.close()
     return render_template('liste.html',tableau=tableau)
